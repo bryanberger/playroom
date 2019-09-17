@@ -59,12 +59,16 @@
 .toolbarIcon {
   width: @sandbox-icon-width;
   height: @sandbox-icon-height;
+  margin-right: 8px;
   cursor: pointer;
   * {
     fill: @sandbox-icon-color;
   }
   &:hover * {
     fill: @sandbox-icon-hover-color;
+  }
+  &:last-child {
+    margin-right: 0;
   }
 }
 
