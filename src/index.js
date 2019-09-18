@@ -8,7 +8,6 @@ import Playroom from './Playroom/Playroom';
 
 const playroomConfig = (window.__playroomConfig__ = __PLAYROOM_GLOBAL__CONFIG__);
 const staticTypes = __PLAYROOM_GLOBAL__STATIC_TYPES__;
-const getShortlinkFunc = __PLAYROOM_GLOBAL__GET_SHORTLINK__;
 const widths = playroomConfig.widths || [320, 375, 768, 1024];
 
 const outlet = document.createElement('div');
@@ -54,7 +53,6 @@ render(
     getCode={getCode}
     updateCode={updateCode}
     getUrl={getUrl}
-    getShortlink={getShortlinkFunc ? true : false}
   />,
   outlet
 );

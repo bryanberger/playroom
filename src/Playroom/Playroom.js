@@ -13,7 +13,7 @@ import styles from './Playroom.less';
 import { store } from '../index';
 import WindowPortal from './WindowPortal';
 import UndockSvg from '../assets/icons/NewWindowSvg';
-import CopyShortlink from './CopyShortlink';
+// import CopyShortlink from './CopyShortlink';
 import { formatCode } from '../utils/formatting';
 
 import { Controlled as ReactCodeMirror } from 'react-codemirror2';
@@ -25,6 +25,7 @@ import 'codemirror/addon/hint/xml-hint';
 
 const themesImport = require('./themes');
 const componentsImport = require('./components');
+const ShortlinkComponent = require('./shortlinkComponent');
 
 const compileJsx = code =>
   transform(`<React.Fragment>${code.trim() || ''}</React.Fragment>`).code;
@@ -367,12 +368,10 @@ export default class Playroom extends Component {
           enable={resizableConfig}
         >
           <div className={styles.toolbar}>
-            {getShortlink && (
-              <CopyShortlink
-                url={getUrl(this.state.code)}
-                className={styles.toolbarIcon}
-              />
-            )}
+            <ShortlinkComponent
+              url={getUrl(this.state.code)}
+              className={styles.toolbarIcon}
+            />
             <UndockSvg
               title="Undock editor"
               className={styles.toolbarIcon}
