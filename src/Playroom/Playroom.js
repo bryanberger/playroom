@@ -13,7 +13,7 @@ import styles from './Playroom.less';
 import { store } from '../index';
 import WindowPortal from './WindowPortal';
 import UndockSvg from '../assets/icons/NewWindowSvg';
-import CopyShortlinkSvg from '../assets/icons/CopyShortlinkSvg';
+import CopyShortlink from './CopyShortlink';
 import { formatCode } from '../utils/formatting';
 
 import { Controlled as ReactCodeMirror } from 'react-codemirror2';
@@ -88,7 +88,6 @@ export default class Playroom extends Component {
       themes: themesImport,
       components: componentsImport,
       codeReady: false,
-      code: null,
       renderCode: null,
       height: 200,
       editorUndocked: false
@@ -235,12 +234,8 @@ export default class Playroom extends Component {
     this.setEditorUndocked(false);
   };
 
-  handleCopyShortlink = () => {
-    this.props.getShortlink(this.state.code);
-  };
-
   render() {
-    const { staticTypes, widths, getShortlink } = this.props;
+    const { staticTypes, widths, getShortlink, getUrl } = this.props;
     const {
       themes,
       components,
@@ -372,11 +367,10 @@ export default class Playroom extends Component {
           enable={resizableConfig}
         >
           <div className={styles.toolbar}>
-            {getShortlink !== null && (
-              <CopyShortlinkSvg
-                title="Copy short link"
+            {getShortlink && (
+              <CopyShortlink
+                url={getUrl(this.state.code)}
                 className={styles.toolbarIcon}
-                onClick={this.handleCopyShortlink}
               />
             )}
             <UndockSvg

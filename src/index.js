@@ -38,13 +38,12 @@ const updateCode = code => {
   store.setItem('code', code);
 };
 
-const getShortlink = code => {
-  if (getShortlinkFunc !== null) {
-    const url = `${window.location.origin}#?code=${
-      code ? base64url.encode(code) : ''
-    }`;
-    return getShortlinkFunc(url);
-  }
+const getUrl = code => {
+  const url = `${window.location.origin}#?code=${
+    code ? base64url.encode(code) : ''
+  }`;
+
+  return url;
 };
 
 render(
@@ -54,7 +53,8 @@ render(
     defaultFrames={playroomConfig.defaultFrames}
     getCode={getCode}
     updateCode={updateCode}
-    getShortlink={getShortlinkFunc ? getShortlink : null}
+    getUrl={getUrl}
+    getShortlink={getShortlinkFunc ? true : false}
   />,
   outlet
 );
